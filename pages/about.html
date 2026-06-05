@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="About NASA Space Explorer by Arjumand Ali — a multi-page JavaScript project using NASA APIs, space data, satellite TLE data, and responsive frontend design."
+  />
+
+  <meta
+    name="keywords"
+    content="NASA Space Explorer, Arjumand Ali, JavaScript API Project, Front End Developer, NASA APIs, Satellite Tracker, TLE API, APOD, Asteroids, EPIC, EONET, DONKI"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+
+  <title>About Project — NASA Space Explorer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="NASA Space Explorer Home">
+        <span class="brand-mark">AA</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Arjumand Ali</span>
+          <span class="brand-subtitle">NASA Space Explorer</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./apod.html" class="nav-link">APOD</a>
+        <a href="./asteroids.html" class="nav-link">Asteroids</a>
+        <a href="./search.html" class="nav-link">Search</a>
+        <a href="./epic.html" class="nav-link">EPIC</a>
+        <a href="./eonet.html" class="nav-link">EONET</a>
+        <a href="./donki.html" class="nav-link">DONKI</a>
+        <a href="./satellites.html" class="nav-link">Satellites</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">API Live</span>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="./apod.html" class="mobile-link">APOD</a>
+      <a href="./mars.html" class="mobile-link">Mars Rover</a>
+      <a href="./asteroids.html" class="mobile-link">Asteroids</a>
+      <a href="./search.html" class="mobile-link">NASA Search</a>
+      <a href="./epic.html" class="mobile-link">EPIC Earth</a>
+      <a href="./eonet.html" class="mobile-link">EONET Events</a>
+      <a href="./donki.html" class="mobile-link">DONKI</a>
+      <a href="./satellites.html" class="mobile-link">Satellites</a>
+      <a href="./about.html" class="mobile-link active">About</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-kicker">About This Project</span>
+
+        <h1>
+          NASA Space
+          <span>Explorer</span>
+        </h1>
+
+        <p>
+          A multi-page frontend project by Arjumand Ali built with HTML, CSS,
+          JavaScript, responsive design, API integration, satellite orbit data,
+          localStorage caching, and clean reusable UI components.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT OVERVIEW ================= -->
+    <section class="about-project-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-main-card">
+            <span class="section-kicker">Project Overview</span>
+
+            <h2>Built To Show Real Frontend Skills</h2>
+
+            <p>
+              NASA Space Explorer is a responsive JavaScript project that uses
+              public NASA APIs and space-data sources to display real space and
+              Earth observation data. The project is designed as a portfolio-ready
+              frontend application with multiple pages, reusable helper functions,
+              clean file structure, API calls, loading states, error handling,
+              and cached results.
+            </p>
+
+            <p>
+              The main goal of this project is to show practical frontend
+              development skills instead of only static page design. It proves
+              that the site can connect with external APIs, process JSON data,
+              render dynamic results, and present useful information inside a
+              modern responsive interface.
+            </p>
+
+            <div class="about-actions">
+              <a href="../index.html" class="btn btn-primary">Back Home</a>
+              <a href="./satellites.html" class="btn btn-outline">Open Satellites</a>
+              <a href="https://github.com/arjumand-codes" target="_blank" class="btn btn-outline">
+                Visit GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="about-side-card">
+            <div class="profile-badge">AA</div>
+
+            <h3>Arjumand Ali</h3>
+
+            <p>
+              Front-End Developer focused on responsive websites, clean UI,
+              JavaScript projects, WordPress, Elementor, and API-based web apps.
+            </p>
+
+            <div class="about-mini-list">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>API Integration</span>
+              <span>Responsive Design</span>
+              <span>localStorage</span>
+              <span>TLE Data</span>
+              <span>NASA APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MODULES ================= -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Project Modules</span>
+
+          <h2>Pages Included</h2>
+
+          <p>
+            These modules make the project look complete, useful, and stronger
+            for a frontend developer portfolio.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-number">01</span>
+            <h3>APOD</h3>
+            <p>
+              Loads Astronomy Picture of the Day with image/video support, date
+              picker, random date, metadata, and cache.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">02</span>
+            <h3>Asteroids</h3>
+            <p>
+              Shows near-Earth objects with speed, miss distance, size estimate,
+              close approach date, and safe/hazard badge.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">03</span>
+            <h3>Search</h3>
+            <p>
+              Searches NASA Image and Video Library without needing a personal
+              API key.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">04</span>
+            <h3>EPIC</h3>
+            <p>
+              Displays real Earth images from NASA EPIC with featured image,
+              image gallery, coordinates, and metadata.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">05</span>
+            <h3>EONET</h3>
+            <p>
+              Tracks Earth natural events like wildfires, severe storms,
+              volcanoes, floods, droughts, and snow.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">06</span>
+            <h3>DONKI</h3>
+            <p>
+              Shows space weather notifications, solar flares, CME events,
+              geomagnetic storms, and solar activity data.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">07</span>
+            <h3>Satellites</h3>
+            <p>
+              Searches satellite TLE orbit records by name or NORAD ID and
+              displays orbit line data.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">08</span>
+            <h3>Mars</h3>
+            <p>
+              Mars Rover photo gallery module prepared for rover image data and
+              experimental API testing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TECH STACK ================= -->
+    <section class="tech-stack-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Tech Stack</span>
+
+          <h2>Tools Used</h2>
+
+          <p>
+            The project is intentionally built without frameworks so the core
+            frontend logic stays clear and easy to understand.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-card">
+            <span>HTML5</span>
+            <p>Semantic page structure, navigation, sections, forms, cards, and multi-page routing.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>CSS3</span>
+            <p>Responsive layout, modern dark UI, grid, flexbox, animations, and custom components.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>JavaScript</span>
+            <p>Fetch API, async/await, DOM rendering, events, validation, and localStorage cache.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>NASA APIs</span>
+            <p>APOD, NeoWs Asteroids, EPIC, EONET, DONKI, Mars Rover Photos, and Image Search.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>TLE Data</span>
+            <p>Satellite search by name or NORAD ID with Two-Line Element orbit records.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>UX States</span>
+            <p>Loading skeletons, error messages, empty states, badges, filters, and source links.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>Responsive</span>
+            <p>Mobile-first layout behavior with separate responsive CSS rules for smaller screens.</p>
+          </div>
+
+          <div class="tech-card">
+            <span>GitHub Ready</span>
+            <p>Clean folder structure, reusable files, portfolio-focused content, and live deployment support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FILE STRUCTURE ================= -->
+    <section class="build-plan-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Code Structure</span>
+
+          <h2>Project Files</h2>
+
+          <p>
+            The files are separated clearly so the project is easy to maintain,
+            scale, and understand on GitHub.
+          </p>
+        </div>
+
+        <div class="code-structure-card">
+<pre><code>nasa-space-explorer/
+│
+├── index.html
+│
+├── css/
+│   ├── style.css
+│   └── responsive.css
+│
+├── js/
+│   ├── config.js
+│   ├── helpers.js
+│   ├── main.js
+│   ├── apod.js
+│   ├── mars.js
+│   ├── asteroids.js
+│   ├── search.js
+│   ├── epic.js
+│   ├── eonet.js
+│   ├── donki.js
+│   └── satellites.js
+│
+└── pages/
+    ├── apod.html
+    ├── mars.html
+    ├── asteroids.html
+    ├── search.html
+    ├── epic.html
+    ├── eonet.html
+    ├── donki.html
+    ├── satellites.html
+    └── about.html</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <span class="section-kicker">Explore The App</span>
+
+          <h2>Start With A Working API Page</h2>
+
+          <p>
+            Open the Asteroid Tracker, NASA Image Search, EPIC Earth Images,
+            EONET Events, or Satellite Tracker page to see real data rendered
+            inside the project.
+          </p>
+
+          <div class="cta-actions">
+            <a href="./asteroids.html" class="btn btn-primary">Open Asteroids</a>
+            <a href="./satellites.html" class="btn btn-outline">Open Satellites</a>
+            <a href="./search.html" class="btn btn-outline">Open Search</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand footer-logo">
+          <span class="brand-mark">AA</span>
+
+          <span class="brand-text">
+            <span class="brand-name">Arjumand Ali</span>
+            <span class="brand-subtitle">NASA Space Explorer</span>
+          </span>
+        </a>
+
+        <p>
+          A multi-page frontend project using HTML, CSS, JavaScript, real NASA
+          API services, satellite TLE data, localStorage caching, and responsive UI design.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Core Pages</h3>
+
+        <a href="../index.html">Home</a>
+        <a href="./apod.html">APOD</a>
+        <a href="./asteroids.html">Asteroids</a>
+        <a href="./search.html">NASA Search</a>
+        <a href="./mars.html">Mars Rover</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Advanced</h3>
+
+        <a href="./epic.html">EPIC Earth</a>
+        <a href="./eonet.html">EONET Events</a>
+        <a href="./donki.html">DONKI</a>
+        <a href="./satellites.html">Satellites</a>
+        <a href="./about.html">About Project</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>External</h3>
+
+        <a href="https://api.nasa.gov/" target="_blank">NASA APIs</a>
+        <a href="https://images.nasa.gov/" target="_blank">NASA Images</a>
+        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>
+        <a href="https://www.nasa.gov/" target="_blank">NASA Website</a>
+        <a href="https://github.com/arjumand-codes" target="_blank">My GitHub</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Arjumand Ali. Built for learning, portfolio, and API practice.</p>
+
+      <a href="#top" class="back-to-top">Back To Top ↑</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/config.js"></script>
+  <script src="../js/helpers.js"></script>
+</body>
+</html>

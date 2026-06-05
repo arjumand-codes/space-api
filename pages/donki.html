@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="DONKI Notifications page for NASA Space Explorer by Arjumand Ali. View NASA space weather notifications, solar events, geomagnetic storms, and space weather data inside a multi-page JavaScript API dashboard."
+  />
+
+  <meta
+    name="keywords"
+    content="NASA DONKI API, Space Weather, Solar Flares, CME, Geomagnetic Storms, JavaScript API Project, Arjumand Ali, NASA Space Explorer, Satellite Tracker, TLE API, EPIC, EONET"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+
+  <title>DONKI Notifications — NASA Space Explorer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="NASA Space Explorer Home">
+        <span class="brand-mark">AA</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Arjumand Ali</span>
+          <span class="brand-subtitle">NASA Space Explorer</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./apod.html" class="nav-link">APOD</a>
+        <a href="./asteroids.html" class="nav-link">Asteroids</a>
+        <a href="./search.html" class="nav-link">Search</a>
+        <a href="./epic.html" class="nav-link">EPIC</a>
+        <a href="./eonet.html" class="nav-link">EONET</a>
+        <a href="./donki.html" class="nav-link active">DONKI</a>
+        <a href="./satellites.html" class="nav-link">Satellites</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">API Live</span>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="./apod.html" class="mobile-link">APOD</a>
+      <a href="./mars.html" class="mobile-link">Mars Rover</a>
+      <a href="./asteroids.html" class="mobile-link">Asteroids</a>
+      <a href="./search.html" class="mobile-link">NASA Search</a>
+      <a href="./epic.html" class="mobile-link">EPIC Earth</a>
+      <a href="./eonet.html" class="mobile-link">EONET Events</a>
+      <a href="./donki.html" class="mobile-link active">DONKI</a>
+      <a href="./satellites.html" class="mobile-link">Satellites</a>
+      <a href="./about.html" class="mobile-link">About</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-kicker">Space Weather Database Of Notifications</span>
+
+        <h1>
+          DONKI
+          <span>Notifications</span>
+        </h1>
+
+        <p>
+          View NASA space weather notifications including solar flares, coronal
+          mass ejections, geomagnetic storms, interplanetary shocks, solar
+          energetic particles, and other space weather alerts.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= DONKI TOOL ================= -->
+    <section class="api-tools-section">
+      <div class="container">
+        <div class="tool-panel donki-tool-panel">
+          <!-- Controls -->
+          <div class="form-row donki-controls">
+            <select id="donkiTypeSelect" class="select-field" aria-label="Select DONKI event type">
+              <option value="notifications">Notifications</option>
+              <option value="FLR">Solar Flares</option>
+              <option value="CME">Coronal Mass Ejections</option>
+              <option value="GST">Geomagnetic Storms</option>
+              <option value="IPS">Interplanetary Shocks</option>
+              <option value="SEP">Solar Energetic Particles</option>
+              <option value="MPC">Magnetopause Crossings</option>
+              <option value="RBE">Radiation Belt Enhancements</option>
+              <option value="HSS">High Speed Streams</option>
+            </select>
+
+            <input
+              type="date"
+              id="donkiStartDate"
+              class="input-field"
+              aria-label="Select start date"
+            />
+
+            <input
+              type="date"
+              id="donkiEndDate"
+              class="input-field"
+              aria-label="Select end date"
+            />
+
+            <button class="btn btn-primary" id="donkiLoadBtn">
+              Load Data
+            </button>
+
+            <button class="btn btn-outline" id="donkiRecentBtn">
+              Recent
+            </button>
+
+            <button class="btn btn-outline" id="donkiClearCacheBtn">
+              Clear Cache
+            </button>
+          </div>
+
+          <!-- Status -->
+          <div class="status-message" id="donkiStatus">
+            Waiting for DONKI API request...
+          </div>
+
+          <!-- Stats -->
+          <div class="donki-stats-grid">
+            <div class="donki-stat-card">
+              <span>Total Results</span>
+              <strong id="donkiTotalCount">—</strong>
+            </div>
+
+            <div class="donki-stat-card">
+              <span>Event Type</span>
+              <strong id="donkiSelectedType">—</strong>
+            </div>
+
+            <div class="donki-stat-card">
+              <span>Date Range</span>
+              <strong id="donkiDateRange">—</strong>
+            </div>
+
+            <div class="donki-stat-card">
+              <span>Load Source</span>
+              <strong id="donkiLoadSource">—</strong>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="result-grid donki-result-grid" id="donkiResults">
+            <div class="result-card">
+              <div class="result-card-body">
+                <span class="badge badge-safe">Ready</span>
+                <h3>DONKI Alerts</h3>
+                <p>
+                  Select event type and date range, then click Load Data.
+                </p>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-card-body">
+                <span class="badge badge-safe">Space Weather</span>
+                <h3>Solar Events</h3>
+                <p>
+                  View solar flares, CME events, geomagnetic storms, and more.
+                </p>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-card-body">
+                <span class="badge badge-safe">API Module</span>
+                <h3>Advanced Data</h3>
+                <p>
+                  This page adds a more advanced scientific data module to the dashboard.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INFO SECTION ================= -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Space Weather Types</span>
+
+          <h2>What DONKI Tracks</h2>
+
+          <p>
+            DONKI adds an advanced science-data layer to your project. It is less
+            visual than APOD or EPIC, but it makes the project look more serious,
+            technical, and data-driven.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-number">CME</span>
+            <h3>Coronal Mass</h3>
+            <p>
+              Large expulsions of plasma and magnetic field from the Sun’s corona.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">FLR</span>
+            <h3>Solar Flares</h3>
+            <p>
+              Sudden bursts of energy from the Sun that can affect space weather.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">GST</span>
+            <h3>Geomagnetic</h3>
+            <p>
+              Geomagnetic storm records related to solar activity and Earth’s magnetosphere.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">IPS</span>
+            <h3>Shock Events</h3>
+            <p>
+              Interplanetary shock events detected in space weather monitoring.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <span class="section-kicker">Explore More Space Data</span>
+
+          <h2>Open Another Technical Module</h2>
+
+          <p>
+            Continue exploring the dashboard with Satellite Tracker for TLE orbit
+            records, or EONET for Earth natural event data.
+          </p>
+
+          <div class="cta-actions">
+            <a href="./satellites.html" class="btn btn-primary">Open Satellites</a>
+            <a href="./eonet.html" class="btn btn-outline">Open EONET</a>
+            <a href="./about.html" class="btn btn-outline">View Project Docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand footer-logo">
+          <span class="brand-mark">AA</span>
+
+          <span class="brand-text">
+            <span class="brand-name">Arjumand Ali</span>
+            <span class="brand-subtitle">NASA Space Explorer</span>
+          </span>
+        </a>
+
+        <p>
+          A multi-page frontend project using HTML, CSS, JavaScript, real NASA
+          API services, satellite TLE data, localStorage caching, and responsive UI design.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Core Pages</h3>
+
+        <a href="../index.html">Home</a>
+        <a href="./apod.html">APOD</a>
+        <a href="./asteroids.html">Asteroids</a>
+        <a href="./search.html">NASA Search</a>
+        <a href="./mars.html">Mars Rover</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Advanced</h3>
+
+        <a href="./epic.html">EPIC Earth</a>
+        <a href="./eonet.html">EONET Events</a>
+        <a href="./donki.html">DONKI</a>
+        <a href="./satellites.html">Satellites</a>
+        <a href="./about.html">About Project</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>External</h3>
+
+        <a href="https://api.nasa.gov/" target="_blank">NASA APIs</a>
+        <a href="https://kauai.ccmc.gsfc.nasa.gov/DONKI/" target="_blank">DONKI</a>
+        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>
+        <a href="https://www.nasa.gov/" target="_blank">NASA Website</a>
+        <a href="https://github.com/arjumand-codes" target="_blank">My GitHub</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Arjumand Ali. Built for learning, portfolio, and API practice.</p>
+
+      <a href="#top" class="back-to-top">Back To Top ↑</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/config.js"></script>
+  <script src="../js/helpers.js"></script>
+  <script src="../js/donki.js"></script>
+</body>
+</html>

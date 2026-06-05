@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Astronomy Picture of the Day page for NASA Space Explorer by Arjumand Ali. Search daily space pictures using NASA APOD API inside a multi-page JavaScript API dashboard."
+  />
+
+  <meta
+    name="keywords"
+    content="NASA APOD API, Astronomy Picture of the Day, NASA API Project, Arjumand Ali, JavaScript API Project, NASA Space Explorer, Satellite Tracker, Asteroids, EPIC, EONET, DONKI"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+
+  <title>APOD — NASA Space Explorer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="NASA Space Explorer Home">
+        <span class="brand-mark">AA</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Arjumand Ali</span>
+          <span class="brand-subtitle">NASA Space Explorer</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./apod.html" class="nav-link active">APOD</a>
+        <a href="./asteroids.html" class="nav-link">Asteroids</a>
+        <a href="./search.html" class="nav-link">Search</a>
+        <a href="./epic.html" class="nav-link">EPIC</a>
+        <a href="./eonet.html" class="nav-link">EONET</a>
+        <a href="./donki.html" class="nav-link">DONKI</a>
+        <a href="./satellites.html" class="nav-link">Satellites</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">API Live</span>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="./apod.html" class="mobile-link active">APOD</a>
+      <a href="./mars.html" class="mobile-link">Mars Rover</a>
+      <a href="./asteroids.html" class="mobile-link">Asteroids</a>
+      <a href="./search.html" class="mobile-link">NASA Search</a>
+      <a href="./epic.html" class="mobile-link">EPIC Earth</a>
+      <a href="./eonet.html" class="mobile-link">EONET Events</a>
+      <a href="./donki.html" class="mobile-link">DONKI</a>
+      <a href="./satellites.html" class="mobile-link">Satellites</a>
+      <a href="./about.html" class="mobile-link">About</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-kicker">Astronomy Picture Of The Day</span>
+
+        <h1>
+          Daily Space
+          <span>Picture</span>
+        </h1>
+
+        <p>
+          Explore NASA’s Astronomy Picture of the Day. Select a date, load
+          today’s picture, or open a random space image from NASA’s APOD archive.
+          This module supports images, videos, metadata, and local cache.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= APOD TOOL ================= -->
+    <section class="api-tools-section">
+      <div class="container">
+        <div class="tool-panel apod-tool-panel">
+          <!-- Controls -->
+          <div class="form-row apod-controls">
+            <input
+              type="date"
+              id="apodDateInput"
+              class="input-field"
+              aria-label="Select APOD date"
+            />
+
+            <button class="btn btn-primary" id="apodLoadBtn">
+              Load Picture
+            </button>
+
+            <button class="btn btn-outline" id="apodTodayBtn">
+              Today
+            </button>
+
+            <button class="btn btn-outline" id="apodRandomBtn">
+              Random
+            </button>
+
+            <button class="btn btn-outline" id="apodClearCacheBtn">
+              Clear Cache
+            </button>
+          </div>
+
+          <!-- Status -->
+          <div class="status-message" id="apodStatus">
+            Waiting for API request...
+          </div>
+
+          <!-- APOD Result -->
+          <div class="apod-result-card" id="apodResultCard">
+            <div class="apod-media" id="apodMedia">
+              <div class="skeleton-box"></div>
+            </div>
+
+            <div class="apod-info">
+              <div class="apod-date" id="apodDate">Loading...</div>
+
+              <h2 id="apodTitle">Fetching Astronomy Picture</h2>
+
+              <p id="apodExplanation">
+                Please wait while the project connects to NASA APOD API.
+              </p>
+
+              <div class="apod-meta-grid">
+                <div class="apod-meta-item">
+                  <span>Media Type</span>
+                  <strong id="apodMediaType">—</strong>
+                </div>
+
+                <div class="apod-meta-item">
+                  <span>Copyright</span>
+                  <strong id="apodCopyright">—</strong>
+                </div>
+
+                <div class="apod-meta-item">
+                  <span>Load Source</span>
+                  <strong id="apodLoadSource">—</strong>
+                </div>
+
+                <div class="apod-meta-item">
+                  <span>Load Time</span>
+                  <strong id="apodLoadTime">—</strong>
+                </div>
+              </div>
+
+              <div class="apod-actions">
+                <a href="#" target="_blank" class="btn btn-primary" id="apodOriginalLink">
+                  Open Original
+                </a>
+
+                <a href="https://apod.nasa.gov/" target="_blank" class="btn btn-outline">
+                  APOD Archive
+                </a>
+
+                <a href="https://api.nasa.gov/" target="_blank" class="btn btn-outline">
+                  API Source
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand footer-logo">
+          <span class="brand-mark">AA</span>
+
+          <span class="brand-text">
+            <span class="brand-name">Arjumand Ali</span>
+            <span class="brand-subtitle">NASA Space Explorer</span>
+          </span>
+        </a>
+
+        <p>
+          A multi-page frontend project using HTML, CSS, JavaScript, real NASA
+          API services, satellite TLE data, localStorage caching, and responsive UI design.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Core Pages</h3>
+
+        <a href="../index.html">Home</a>
+        <a href="./apod.html">APOD</a>
+        <a href="./asteroids.html">Asteroids</a>
+        <a href="./search.html">NASA Search</a>
+        <a href="./mars.html">Mars Rover</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Advanced</h3>
+
+        <a href="./epic.html">EPIC Earth</a>
+        <a href="./eonet.html">EONET Events</a>
+        <a href="./donki.html">DONKI</a>
+        <a href="./satellites.html">Satellites</a>
+        <a href="./about.html">About Project</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>External</h3>
+
+        <a href="https://api.nasa.gov/" target="_blank">NASA APIs</a>
+        <a href="https://apod.nasa.gov/" target="_blank">APOD Archive</a>
+        <a href="https://images.nasa.gov/" target="_blank">NASA Images</a>
+        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>
+        <a href="https://github.com/arjumand-codes" target="_blank">My GitHub</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Arjumand Ali. Built for learning, portfolio, and API practice.</p>
+
+      <a href="#top" class="back-to-top">Back To Top ↑</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/config.js"></script>
+  <script src="../js/helpers.js"></script>
+  <script src="../js/apod.js"></script>
+</body>
+</html>

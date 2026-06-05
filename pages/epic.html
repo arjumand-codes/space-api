@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="EPIC Earth Images page for NASA Space Explorer by Arjumand Ali. View real Earth images captured by NASA EPIC camera inside a multi-page JavaScript API dashboard."
+  />
+
+  <meta
+    name="keywords"
+    content="NASA EPIC API, Earth Images, Earth Camera, NASA API Project, JavaScript Project, Arjumand Ali, NASA Space Explorer, Satellite Tracker, TLE API, EONET, DONKI"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+
+  <title>EPIC Earth Images — NASA Space Explorer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="NASA Space Explorer Home">
+        <span class="brand-mark">AA</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Arjumand Ali</span>
+          <span class="brand-subtitle">NASA Space Explorer</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./apod.html" class="nav-link">APOD</a>
+        <a href="./asteroids.html" class="nav-link">Asteroids</a>
+        <a href="./search.html" class="nav-link">Search</a>
+        <a href="./epic.html" class="nav-link active">EPIC</a>
+        <a href="./eonet.html" class="nav-link">EONET</a>
+        <a href="./donki.html" class="nav-link">DONKI</a>
+        <a href="./satellites.html" class="nav-link">Satellites</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">API Live</span>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="./apod.html" class="mobile-link">APOD</a>
+      <a href="./mars.html" class="mobile-link">Mars Rover</a>
+      <a href="./asteroids.html" class="mobile-link">Asteroids</a>
+      <a href="./search.html" class="mobile-link">NASA Search</a>
+      <a href="./epic.html" class="mobile-link active">EPIC Earth</a>
+      <a href="./eonet.html" class="mobile-link">EONET Events</a>
+      <a href="./donki.html" class="mobile-link">DONKI</a>
+      <a href="./satellites.html" class="mobile-link">Satellites</a>
+      <a href="./about.html" class="mobile-link">About</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-kicker">Earth Polychromatic Imaging Camera</span>
+
+        <h1>
+          EPIC Earth
+          <span>Images</span>
+        </h1>
+
+        <p>
+          View real Earth images captured by NASA’s EPIC camera. Select a date,
+          load Earth images, and explore image metadata like caption, centroid,
+          coordinates, image name, source, and load time.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= EPIC TOOL ================= -->
+    <section class="api-tools-section">
+      <div class="container">
+        <div class="tool-panel epic-tool-panel">
+          <!-- Controls -->
+          <div class="form-row epic-controls">
+            <input
+              type="date"
+              id="epicDateInput"
+              class="input-field"
+              aria-label="Select EPIC image date"
+            />
+
+            <button class="btn btn-primary" id="epicLoadBtn">
+              Load Images
+            </button>
+
+            <button class="btn btn-outline" id="epicDemoBtn">
+              Demo Date
+            </button>
+
+            <button class="btn btn-outline" id="epicLatestBtn">
+              Latest
+            </button>
+
+            <button class="btn btn-outline" id="epicClearCacheBtn">
+              Clear Cache
+            </button>
+          </div>
+
+          <!-- Status -->
+          <div class="status-message" id="epicStatus">
+            Waiting for EPIC API request...
+          </div>
+
+          <!-- Stats -->
+          <div class="epic-stats-grid">
+            <div class="epic-stat-card">
+              <span>Images Found</span>
+              <strong id="epicImageCount">—</strong>
+            </div>
+
+            <div class="epic-stat-card">
+              <span>Selected Date</span>
+              <strong id="epicSelectedDate">—</strong>
+            </div>
+
+            <div class="epic-stat-card">
+              <span>Source</span>
+              <strong id="epicLoadSource">—</strong>
+            </div>
+
+            <div class="epic-stat-card">
+              <span>Load Time</span>
+              <strong id="epicLoadTime">—</strong>
+            </div>
+          </div>
+
+          <!-- Featured Preview -->
+          <div class="epic-featured-card" id="epicFeaturedCard">
+            <div class="epic-featured-media" id="epicFeaturedMedia">
+              <div class="skeleton-box"></div>
+            </div>
+
+            <div class="epic-featured-info">
+              <span class="epic-date-tag" id="epicFeaturedDate">Loading...</span>
+
+              <h2 id="epicFeaturedTitle">Earth From Space</h2>
+
+              <p id="epicFeaturedText">
+                Select a date or use the demo date to load Earth images from NASA EPIC API.
+              </p>
+
+              <div class="epic-featured-list">
+                <span>
+                  Latitude
+                  <b id="epicLat">—</b>
+                </span>
+
+                <span>
+                  Longitude
+                  <b id="epicLon">—</b>
+                </span>
+
+                <span>
+                  Image Name
+                  <b id="epicImageName">—</b>
+                </span>
+              </div>
+
+              <a href="https://epic.gsfc.nasa.gov/" target="_blank" class="btn btn-primary">
+                EPIC Source
+              </a>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="result-grid epic-result-grid" id="epicResults">
+            <div class="result-card">
+              <div class="skeleton-box" style="position:relative;height:230px;"></div>
+              <div class="result-card-body">
+                <span class="badge badge-safe">Ready</span>
+                <h3>EPIC Earth</h3>
+                <p>
+                  Select a date and load Earth images captured by NASA EPIC camera.
+                </p>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="skeleton-box" style="position:relative;height:230px;"></div>
+              <div class="result-card-body">
+                <span class="badge badge-safe">Visual API</span>
+                <h3>Earth Images</h3>
+                <p>
+                  This page creates a visual Earth image gallery for your project.
+                </p>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="skeleton-box" style="position:relative;height:230px;"></div>
+              <div class="result-card-body">
+                <span class="badge badge-safe">Metadata</span>
+                <h3>Image Data</h3>
+                <p>
+                  Each image can show caption, date, coordinates, and image name.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INFO SECTION ================= -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">EPIC Camera</span>
+
+          <h2>Why This Page Looks Cool</h2>
+
+          <p>
+            EPIC adds another strong visual module to your dashboard because it
+            displays real Earth images instead of only text-based API data. It
+            also pairs well with EONET Earth events and Satellite Tracker data.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-number">01</span>
+            <h3>Earth View</h3>
+            <p>
+              Shows full-disk images of Earth captured from space.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">02</span>
+            <h3>Date Filter</h3>
+            <p>
+              Users can select an available date and load Earth image data.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">03</span>
+            <h3>Gallery</h3>
+            <p>
+              Multiple Earth images are displayed inside responsive cards.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">04</span>
+            <h3>Metadata</h3>
+            <p>
+              Shows useful details like centroid coordinates and image name.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <span class="section-kicker">Explore More Visual And Data Modules</span>
+
+          <h2>Open Another Dashboard Page</h2>
+
+          <p>
+            Continue with EONET for Earth natural events, Satellite Tracker for
+            orbit records, or NASA Search for a larger visual media library.
+          </p>
+
+          <div class="cta-actions">
+            <a href="./eonet.html" class="btn btn-primary">Open EONET</a>
+            <a href="./satellites.html" class="btn btn-outline">Open Satellites</a>
+            <a href="./search.html" class="btn btn-outline">Open Search</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand footer-logo">
+          <span class="brand-mark">AA</span>
+
+          <span class="brand-text">
+            <span class="brand-name">Arjumand Ali</span>
+            <span class="brand-subtitle">NASA Space Explorer</span>
+          </span>
+        </a>
+
+        <p>
+          A multi-page frontend project using HTML, CSS, JavaScript, real NASA
+          API services, satellite TLE data, localStorage caching, and responsive UI design.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Core Pages</h3>
+
+        <a href="../index.html">Home</a>
+        <a href="./apod.html">APOD</a>
+        <a href="./asteroids.html">Asteroids</a>
+        <a href="./search.html">NASA Search</a>
+        <a href="./mars.html">Mars Rover</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Advanced</h3>
+
+        <a href="./epic.html">EPIC Earth</a>
+        <a href="./eonet.html">EONET Events</a>
+        <a href="./donki.html">DONKI</a>
+        <a href="./satellites.html">Satellites</a>
+        <a href="./about.html">About Project</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>External</h3>
+
+        <a href="https://api.nasa.gov/" target="_blank">NASA APIs</a>
+        <a href="https://epic.gsfc.nasa.gov/" target="_blank">EPIC Website</a>
+        <a href="https://earthobservatory.nasa.gov/" target="_blank">Earth Observatory</a>
+        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>
+        <a href="https://github.com/arjumand-codes" target="_blank">My GitHub</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Arjumand Ali. Built for learning, portfolio, and API practice.</p>
+
+      <a href="#top" class="back-to-top">Back To Top ↑</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/config.js"></script>
+  <script src="../js/helpers.js"></script>
+  <script src="../js/epic.js"></script>
+</body>
+</html>

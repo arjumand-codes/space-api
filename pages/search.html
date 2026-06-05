@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="NASA Image Search page for NASA Space Explorer by Arjumand Ali. Search NASA images and videos using NASA Image and Video Library API inside a multi-page JavaScript API dashboard."
+  />
+
+  <meta
+    name="keywords"
+    content="NASA Image Search, NASA Images API, NASA Image Library, JavaScript API Project, Arjumand Ali, NASA Space Explorer, Satellite Tracker, TLE API, APOD, Asteroids, EPIC, EONET, DONKI"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+
+  <title>NASA Image Search — NASA Space Explorer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="NASA Space Explorer Home">
+        <span class="brand-mark">AA</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Arjumand Ali</span>
+          <span class="brand-subtitle">NASA Space Explorer</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./apod.html" class="nav-link">APOD</a>
+        <a href="./asteroids.html" class="nav-link">Asteroids</a>
+        <a href="./search.html" class="nav-link active">Search</a>
+        <a href="./epic.html" class="nav-link">EPIC</a>
+        <a href="./eonet.html" class="nav-link">EONET</a>
+        <a href="./donki.html" class="nav-link">DONKI</a>
+        <a href="./satellites.html" class="nav-link">Satellites</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">API Live</span>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="./apod.html" class="mobile-link">APOD</a>
+      <a href="./mars.html" class="mobile-link">Mars Rover</a>
+      <a href="./asteroids.html" class="mobile-link">Asteroids</a>
+      <a href="./search.html" class="mobile-link active">NASA Search</a>
+      <a href="./epic.html" class="mobile-link">EPIC Earth</a>
+      <a href="./eonet.html" class="mobile-link">EONET Events</a>
+      <a href="./donki.html" class="mobile-link">DONKI</a>
+      <a href="./satellites.html" class="mobile-link">Satellites</a>
+      <a href="./about.html" class="mobile-link">About</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-kicker">NASA Image And Video Library</span>
+
+        <h1>
+          NASA Image
+          <span>Search</span>
+        </h1>
+
+        <p>
+          Search NASA’s public image and video library for planets, galaxies,
+          astronauts, rockets, nebulae, missions, satellites, and space discoveries.
+          This module works without a personal NASA API key.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SEARCH TOOL ================= -->
+    <section class="api-tools-section">
+      <div class="container">
+        <div class="tool-panel search-tool-panel">
+          <!-- Controls -->
+          <div class="form-row search-controls">
+            <input
+              type="search"
+              id="nasaSearchInput"
+              class="input-field search-input-wide"
+              placeholder="Search NASA images, example: mars, moon, galaxy..."
+              aria-label="Search NASA images"
+            />
+
+            <select id="nasaMediaType" class="select-field" aria-label="Select media type">
+              <option value="image">Images Only</option>
+              <option value="video">Videos Only</option>
+            </select>
+
+            <button class="btn btn-primary" id="nasaSearchBtn">
+              Search
+            </button>
+
+            <button class="btn btn-outline" id="nasaDefaultBtn">
+              Demo Search
+            </button>
+
+            <button class="btn btn-outline" id="nasaClearBtn">
+              Clear
+            </button>
+          </div>
+
+          <!-- Presets -->
+          <div class="search-presets" id="searchPresets">
+            <button type="button" class="preset-chip" data-search="moon">Moon</button>
+            <button type="button" class="preset-chip" data-search="mars">Mars</button>
+            <button type="button" class="preset-chip" data-search="earth">Earth</button>
+            <button type="button" class="preset-chip" data-search="galaxy">Galaxy</button>
+            <button type="button" class="preset-chip" data-search="black hole">Black Hole</button>
+            <button type="button" class="preset-chip" data-search="nebula">Nebula</button>
+            <button type="button" class="preset-chip" data-search="apollo">Apollo</button>
+            <button type="button" class="preset-chip" data-search="astronaut">Astronaut</button>
+          </div>
+
+          <!-- Status -->
+          <div class="status-message" id="nasaSearchStatus">
+            Waiting for search request...
+          </div>
+
+          <!-- Stats -->
+          <div class="search-stats-grid">
+            <div class="search-stat-card">
+              <span>Search Query</span>
+              <strong id="searchQueryText">—</strong>
+            </div>
+
+            <div class="search-stat-card">
+              <span>Media Type</span>
+              <strong id="searchMediaText">—</strong>
+            </div>
+
+            <div class="search-stat-card">
+              <span>Results Shown</span>
+              <strong id="searchResultCount">—</strong>
+            </div>
+
+            <div class="search-stat-card">
+              <span>API Source</span>
+              <strong>NASA Library</strong>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="result-grid search-result-grid" id="nasaSearchResults">
+            <div class="result-card">
+              <div class="skeleton-box" style="position:relative;height:230px;"></div>
+              <div class="result-card-body">
+                <span class="badge badge-safe">Ready</span>
+                <h3>NASA Search</h3>
+                <p>
+                  Type a search term or click a preset chip to find NASA media.
+                </p>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="skeleton-box" style="position:relative;height:230px;"></div>
+              <div class="result-card-body">
+                <span class="badge badge-safe">No Key</span>
+                <h3>Public API</h3>
+                <p>
+                  This search module does not require your NASA API key.
+                </p>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="skeleton-box" style="position:relative;height:230px;"></div>
+              <div class="result-card-body">
+                <span class="badge badge-safe">Visual</span>
+                <h3>Image Grid</h3>
+                <p>
+                  Results will display in a clean responsive image card grid.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INFO SECTION ================= -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Search Features</span>
+
+          <h2>Why This Page Is Useful</h2>
+
+          <p>
+            This module makes the project more visual and interactive because
+            visitors can search for their own space topics and open original
+            NASA media source pages.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-number">01</span>
+            <h3>Search Query</h3>
+            <p>
+              Users can search custom terms like Mars, Moon, Galaxy, Apollo,
+              Nebula, Astronaut, Satellite, and Earth.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">02</span>
+            <h3>Image Cards</h3>
+            <p>
+              Each result shows image preview, title, short description, date,
+              NASA center, tags, and source link.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">03</span>
+            <h3>Preset Chips</h3>
+            <p>
+              Fast topic buttons make the page easier, faster, and more fun to use.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-number">04</span>
+            <h3>No API Key</h3>
+            <p>
+              NASA Image Library search works without your personal API key,
+              which makes this one of the most reliable modules.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <span class="section-kicker">Explore More Visual And Data Modules</span>
+
+          <h2>Open Another Dashboard Page</h2>
+
+          <p>
+            Continue with EPIC for Earth imagery, Satellite Tracker for TLE orbit
+            records, or Asteroid Tracker for near-Earth object data.
+          </p>
+
+          <div class="cta-actions">
+            <a href="./epic.html" class="btn btn-primary">Open EPIC</a>
+            <a href="./satellites.html" class="btn btn-outline">Open Satellites</a>
+            <a href="./asteroids.html" class="btn btn-outline">Open Asteroids</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="brand footer-logo">
+          <span class="brand-mark">AA</span>
+
+          <span class="brand-text">
+            <span class="brand-name">Arjumand Ali</span>
+            <span class="brand-subtitle">NASA Space Explorer</span>
+          </span>
+        </a>
+
+        <p>
+          A multi-page frontend project using HTML, CSS, JavaScript, real NASA
+          API services, satellite TLE data, localStorage caching, and responsive UI design.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Core Pages</h3>
+
+        <a href="../index.html">Home</a>
+        <a href="./apod.html">APOD</a>
+        <a href="./asteroids.html">Asteroids</a>
+        <a href="./search.html">NASA Search</a>
+        <a href="./mars.html">Mars Rover</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Advanced</h3>
+
+        <a href="./epic.html">EPIC Earth</a>
+        <a href="./eonet.html">EONET Events</a>
+        <a href="./donki.html">DONKI</a>
+        <a href="./satellites.html">Satellites</a>
+        <a href="./about.html">About Project</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>External</h3>
+
+        <a href="https://api.nasa.gov/" target="_blank">NASA APIs</a>
+        <a href="https://images.nasa.gov/" target="_blank">NASA Images</a>
+        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>
+        <a href="https://www.nasa.gov/" target="_blank">NASA Website</a>
+        <a href="https://github.com/arjumand-codes" target="_blank">My GitHub</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Arjumand Ali. Built for learning, portfolio, and API practice.</p>
+
+      <a href="#top" class="back-to-top">Back To Top ↑</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="../js/config.js"></script>
+  <script src="../js/helpers.js"></script>
+  <script src="../js/search.js"></script>
+</body>
+</html>
